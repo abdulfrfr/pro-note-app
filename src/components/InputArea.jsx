@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
+
 function InputArea(props){
     const [inputValue, setInputValue] = useState({
-        title: '',
-        content: '',
-        tag: ''
+        title: props.state ? props.eachNote.title : '',
+        content: props.state ? props.eachNote.content : '',
+        tag: props.state ? props.eachNote.tag : ''
     });
-
+    
     function handleInputChange(event){
         const {name, value} = event.target;
         setInputValue((prevInputs)=>{
@@ -28,14 +29,12 @@ function InputArea(props){
     return(
         <section id='input-section'>
         <section>
+        { props.state ? null :
             <div id='filter-area'>
                 <input className='filter-input' onChange={filterUpdate} type='text' placeholder='Filter...' value={filter}/>
-                <button className='filter-button' onClick={()=>{
-                    props.filterNotes(filter, inputValue.tag);
-                    setFilter('');
-                    }}
-                    ><span>Filter</span></button>
+                <button className='filter-button'><span>Filter</span></button>
             </div>
+        }
         </section>
         <form>
             <div id='input-area'>
@@ -59,11 +58,12 @@ function InputArea(props){
                     content: '',
                     tag: ''
                   });
-                  event.preventDefault()
-              }} className='button'>ADD</button> 
+                  event.preventDefault();
+              }} className='button'>{props.state ? 'UPDATE' : 'ADD'}</button> 
             </div>
             </div>
         </form>
+        
         </section>
     );
 }

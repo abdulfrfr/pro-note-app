@@ -4,7 +4,7 @@ import { FiEdit2 } from 'react-icons/fi'
 
 function Notes(props){
     return(
-        <section>
+        <section id='notes'>
         <div className='display-notes'>
             <div id='input-note'>
             <div id='color'>
@@ -18,8 +18,8 @@ function Notes(props){
                 <span className='note-tag'>{props.tag}</span>
             </div>
             <div id='ed'>
-            <div>
-              <span id='edi'><FiEdit2/></span>  
+            <div id='edi'>
+              <span><FiEdit2 onClick={()=> props.setGetId(props.id)}/></span>  
             </div>
             <div id='del'>
               <span><MdDelete onClick={()=>{
